@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_011229) do
+ActiveRecord::Schema.define(version: 2022_09_08_110045) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "number", null: false
+    t.decimal "balance", precision: 20, scale: 4, default: "0.0"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "expenses", force: :cascade do |t|
     t.integer "amount"
@@ -18,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_011229) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "account_id", null: false
+    t.index ["account_id"], name: "index_expenses_on_account_id"
   end
-
 end

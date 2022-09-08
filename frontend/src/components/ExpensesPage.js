@@ -10,6 +10,7 @@ function ExpenseRow({ expense }) {
   return (
     <li className={styles.item}>
       <Link to={`/expense/${expense.id}`} className={styles.itemInner}>
+        <div className={styles.descriptionText}>{expense.account_name}</div>
         <div className={styles.descriptionText}>{expense.description}</div>
         <div className={styles.amountText}>${expense.amount.toFixed(2)}</div>
       </Link>
@@ -34,7 +35,7 @@ function ExpenseList({ expenses }) {
   return (
     <>
       <ul className={styles.list}>
-        {expenses.map((expense) => (
+        {expenses['expenses'].map((expense) => (
           <ExpenseRow key={expense.id} expense={expense} />
         ))}
       </ul>
